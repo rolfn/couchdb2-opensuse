@@ -1,5 +1,5 @@
 # couchdb2-opensuse
-Ingredients for openSUSE CouchDB 2.0 packages. Adapted from 
+Ingredients for openSUSE CouchDB 2.0 packages adapted from 
 [this repository](https://github.com/adrienverge/copr-couchdb). 
 The couchdb source code: http://www.apache.org/dist/couchdb/source/
 
@@ -37,4 +37,5 @@ sudo systemctl enable couchdb.service
 sudo systemctl start couchdb.service
 ```
 
+Edit `/etc/couchdb/local.ini` maybe necessary before starting the process.
  
