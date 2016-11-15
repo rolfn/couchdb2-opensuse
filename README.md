@@ -27,7 +27,7 @@ cp couchdb.service *.patch apache-couchdb-2.0.0.tar.gz ~/rpmbuild/SOURCES
 rpmbuild -ba couchdb.spec 
 ```
 
-Tested with »openSUSE Tumbleweed«.
+Tested with »Tumbleweed« and »Leap 42.1«.
    
 ### Install 
 ```
