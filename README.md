@@ -1,2 +1,23 @@
 # couchdb2-opensuse
-Ingredients for openSUSE CouchDB 2.0 packages
+Ingredients for openSUSE CouchDB 2.0 packages. Adapted from 
+[this repository](https://github.com/adrienverge/copr-couchdb). 
+The couchdb source code: http://www.apache.org/dist/couchdb/source/
+
+### Create rpm packages (src and bin)
+```
+cp couchdb.service *.patch apache-couchdb-2.0.0.tar.gz ~/rpmbuild/SOURCES
+rpmbuild -ba couchdb.spec 
+```
+   
+### Install 
+```
+sudo zypper install ~/rpmbuild/RPMS/x86_64/couchdb-2.0.0*.x86_64.rpm
+```
+
+### Enable Service and Start
+```
+sudo systemctl enable couchdb.service
+sudo systemctl start couchdb.service
+```
+
+ 
