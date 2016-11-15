@@ -25,6 +25,8 @@ The couchdb source code: http://www.apache.org/dist/couchdb/source/
 cp couchdb.service *.patch apache-couchdb-2.0.0.tar.gz ~/rpmbuild/SOURCES
 rpmbuild -ba couchdb.spec 
 ```
+
+Tested with »openSUSE Tumbleweed«.
    
 ### Install 
 ```
