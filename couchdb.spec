@@ -33,6 +33,7 @@ BuildRequires: erlang-eunit
 BuildRequires: erlang-public_key 
 BuildRequires: erlang-reltool
 
+BuildRequires: epmd
 BuildRequires: js-devel
 BuildRequires: libicu-devel
 

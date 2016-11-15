@@ -16,6 +16,7 @@ The couchdb source code: http://www.apache.org/dist/couchdb/source/
 * erlang-eunit
 * erlang-public_key 
 * erlang-reltool
+* epmd
 * js-devel
 * libicu-devel
 
