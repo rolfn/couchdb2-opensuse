@@ -1,37 +1,31 @@
 # couchdb2-opensuse
-Ingredients for openSUSE CouchDB 2.0 packages adapted from 
+Ingredients for openSUSE CouchDB 2.x packages adapted from 
 [this repository](https://github.com/adrienverge/copr-couchdb). 
 The couchdb source code: http://www.apache.org/dist/couchdb/source/
 
 ### Required packages for the build process
 
 * erlang
-* erlang-asn1
-* erlang-devel
+* erlang-src
 * erlang-rebar
-* erlang-otp
-* erlang-otp-devel
-* erlang-os_mon
-* erlang-xmerl
-* erlang-eunit
-* erlang-public_key 
 * erlang-reltool
-* epmd
+* erlang-epmd
 * js-devel
-* libicu-devel
+* libicu-devel 
+* pkg-config
 
 
 ### Create rpm packages (src and bin)
 ```
-cp couchdb.service *.patch apache-couchdb-2.0.0.tar.gz ~/rpmbuild/SOURCES
-rpmbuild -ba couchdb.spec 
+cp couchdb.service *.patch apache-couchdb-2.x.y.tar.gz ~/rpmbuild/SOURCES
+rpmbuild -ba couchdb.spec.2.x.y 
 ```
 
 Tested with »Tumbleweed«, »Leap 42.1«, and »Leap 42.2«.
    
 ### Install 
 ```
-sudo zypper install ~/rpmbuild/RPMS/x86_64/couchdb-2.0.0*.x86_64.rpm
+sudo zypper install ~/rpmbuild/RPMS/x86_64/couchdb-2.x.y*.x86_64.rpm
 ```
 
 ### Enable Service and Start
