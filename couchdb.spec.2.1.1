@@ -1,5 +1,5 @@
 # Copyright 2016 Adrien Vergé
-# adapted for openSUSE: Rolf Niepraschk <Rolf.Niepraschk@gmx.de>
+# adapted for openSUSE: Rolf Niepraschk <Rolf.Niepraschk@gmx.de>, 2017
 #
 # see: https://github.com/adrienverge/copr-couchdb
 #
@@ -9,8 +9,8 @@
 %define couchdb_home %{_localstatedir}/lib/%{name}
 
 Name:          couchdb
-Version:       2.0.0
-Release:       3.1
+Version:       2.1.1
+Release:       1
 Summary:       A document database server, accessible via a RESTful JSON API
 Group:         Applications/Databases
 License:       Apache
@@ -18,31 +18,24 @@ URL:           http://couchdb.apache.org/
 Source0:       http://www.apache.org/dist/%{name}/source/%{version}/apache-couchdb-%{version}.tar.gz
 Source1:       %{name}.service
 Source2:       usr-bin-couchdb
-Patch1:        0001-Trigger-cookie-renewal-on-_session.patch
-Patch2:        0002-Read-config-from-env-COUCHDB_VM_ARGS-and-COUCHDB_INI.patch
+Patch1:        Read-config-from-env.2.1.patch
 
 BuildRequires: erlang
-BuildRequires: erlang-asn1
-BuildRequires: erlang-devel
+BuildRequires: erlang-src
 BuildRequires: erlang-rebar
-BuildRequires: erlang-otp
-BuildRequires: erlang-otp-devel
-BuildRequires: erlang-os_mon
-BuildRequires: erlang-xmerl
-BuildRequires: erlang-eunit
-BuildRequires: erlang-public_key 
 BuildRequires: erlang-reltool
 
-BuildRequires: epmd
+BuildRequires: erlang-epmd
 BuildRequires: js-devel
-BuildRequires: libicu-devel
+BuildRequires: libicu-devel 
+BuildRequires: pkg-config
 
 Requires:       erlang
+Requires:       libmozjs185-1_0
 
 Requires(pre): shadow
 Requires(post): systemd
 Requires(preun): systemd
-
 
 %description
 Apache CouchDB is a distributed, fault-tolerant and schema-free
@@ -55,12 +48,10 @@ JavaScript acting as the default view definition language.
 
 %prep
 %setup -q -n apache-couchdb-%{version}
-%patch1 -p1 -b .cookie-renewal
-%patch2 -p1 -b .config-from-env
-
+%patch1 -p1 -b .config-from-env
 
 %build
-./configure --skip-deps --disable-docs
+./configure --disable-docs
 
 make release %{?_smp_mflags}
 
@@ -76,8 +67,8 @@ install -D -m 755 %{SOURCE2} %{buildroot}%{_bindir}/%{name}
 # Have conf in /etc/couchdb, not /opt/couchdb/etc
 mkdir -p %{buildroot}%{_sysconfdir}
 mv %{buildroot}/opt/couchdb/etc %{buildroot}%{_sysconfdir}/%{name}
-mkdir %{buildroot}%{_sysconfdir}/%{name}/local.d
-mkdir %{buildroot}%{_sysconfdir}/%{name}/default.d
+mkdir -p %{buildroot}%{_sysconfdir}/%{name}/local.d
+mkdir -p %{buildroot}%{_sysconfdir}/%{name}/default.d
 
 install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 
@@ -107,6 +98,8 @@ getent passwd %{couchdb_user} >/dev/null || \
 %dir %{_sysconfdir}/%{name}
 %dir %{_sysconfdir}/%{name}/local.d
 %dir %{_sysconfdir}/%{name}/default.d
+%{_sysconfdir}/%{name}/local.d/README
+%{_sysconfdir}/%{name}/default.d/README
 %config %attr(0644, %{name}, %{name}) %{_sysconfdir}/%{name}/default.ini
 %config(noreplace) %attr(0644, %{name}, %{name}) %{_sysconfdir}/%{name}/local.ini
 %config(noreplace) %attr(0644, %{name}, %{name}) %{_sysconfdir}/%{name}/vm.args
@@ -116,6 +109,12 @@ getent passwd %{couchdb_user} >/dev/null || \
 %{_unitdir}/%{name}.service
 
 %changelog
+* Sun Dec 24 2017 Rolf Niepraschk <Rolf.Niepraschk@gmx.de> 2.1.1-1.0
+- Update to version 2.1.1
+
+* Thu Aug 10 2017 Rolf Niepraschk <Rolf.Niepraschk@gmx.de> 2.1.0-1.0
+- Update to version 2.1.0
+
 * Tue Nov 15 2016 Rolf Niepraschk <Rolf.Niepraschk@gmx.de> 2.0.0-3.1
 - Adapted for openSUSE(systemd based)
 

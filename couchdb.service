@@ -1,0 +1,15 @@
+[Unit]
+Description=CouchDB Server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/couchdb
+Environment=COUCHDB_VM_ARGS=/etc/couchdb/vm.args
+Environment="COUCHDB_INI_FILES=/etc/couchdb/default.ini /etc/couchdb/default.d /etc/couchdb/local.ini /etc/couchdb/local.d"
+User=couchdb
+Group=couchdb
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

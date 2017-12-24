@@ -5,20 +5,26 @@ The couchdb source code: http://www.apache.org/dist/couchdb/source/
 
 ### Required packages for the build process
 
-* erlang
-* erlang-src
-* erlang-rebar
-* erlang-reltool
-* erlang-epmd
-* js-devel
-* libicu-devel 
-* pkg-config
-
+```
+zypper in erlang erlang-src erlang-rebar erlang-reltool erlang-epmd \
+  js-devel libicu-devel pkg-config
+zypper in -t pattern devel_C_C++ 
+```
 
 ### Create rpm packages (src and bin)
+
 ```
-cp couchdb.service *.patch apache-couchdb-2.x.y.tar.gz ~/rpmbuild/SOURCES
+mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
+cp couchdb.service *.patch apache-couchdb-2.x.y.tar.gz usr-bin-couchdb \
+  ~/rpmbuild/SOURCES/
 rpmbuild -ba couchdb.spec.2.x.y 
+```
+
+For the results look at:
+
+```
+~/rpmbuild/RPMS/x86_64/
+~/rpmbuild/SRPMS/
 ```
 
 Tested with »Tumbleweed«, »Leap 42.1«, and »Leap 42.2«.
