@@ -1,6 +1,7 @@
 [Unit]
-Description=CouchDB Server
-After=network.target
+Description=Apache CouchDB
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 ExecStart=/usr/bin/couchdb
