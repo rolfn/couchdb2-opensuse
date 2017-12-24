@@ -6,9 +6,9 @@ The couchdb source code: http://www.apache.org/dist/couchdb/source/
 ### Required packages for the build process
 
 ```
-zypper in erlang erlang-src erlang-rebar erlang-reltool erlang-epmd \
+sudo zypper in erlang erlang-src erlang-rebar erlang-reltool erlang-epmd \
   js-devel libicu-devel pkg-config
-zypper in -t pattern devel_C_C++ 
+sudo zypper in -t pattern devel_C_C++ 
 ```
 
 ### Create rpm packages (src and bin)
