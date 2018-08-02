@@ -7,7 +7,7 @@ The couchdb source code: http://www.apache.org/dist/couchdb/source/
 
 ```
 sudo zypper in erlang erlang-src erlang-rebar erlang-reltool erlang-epmd \
-  js-devel libicu-devel pkg-config
+  js-devel libicu-devel pkg-config rpmbuild
 sudo zypper in -t pattern devel_C_C++ 
 ```
 
@@ -27,7 +27,7 @@ For the results look at:
 ~/rpmbuild/SRPMS/
 ```
 
-Tested with »Tumbleweed«, »Leap 42.1«, and »Leap 42.2«.
+Tested with »Tumbleweed«, »Leap 42.1«, »Leap 42.2«, and »Leap 42.3«.
    
 ### Install 
 ```
