@@ -1,9 +1,10 @@
 #!/bin/bash
 # Rolf Niepraschk <Rolf.Niepraschk@gmx.de>, 2018-08-03
 #
-# Create src and bin rpm file for "couch-js" (openSUSE)
+# Creates openSUSE src and bin rpm files for "couch-js" as a replacement for 
+# "libmozjs" (spidermonkey)
 
-# zypper in mozilla-nspr-devel autoconf213
+# sudo zypper in mozilla-nspr-devel autoconf213
 
 curl -sL https://github.com/apache/couchdb-pkg/archive/master.tar.gz | tar xz
 cp couchdb-pkg-master/js/src/js185-?.?.?.tar.gz  \
