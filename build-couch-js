@@ -1,0 +1,19 @@
+#!/bin/bash
+# Rolf Niepraschk <Rolf.Niepraschk@gmx.de>, 2018-08-03
+#
+# Create src and bin rpm file for "couch-js" (openSUSE)
+
+# zypper in mozilla-nspr-devel autoconf213
+
+curl -sL https://github.com/apache/couchdb-pkg/archive/master.tar.gz | tar xz
+cp couchdb-pkg-master/js/src/js185-?.?.?.tar.gz  \
+   couchdb-pkg-master/js/rpm/SOURCES/* ~/rpmbuild/SOURCES/
+
+# openSUSE has "mozilla-nspr-devel" instead of "nspr-devel"
+sed 's|nspr-devel|mozilla-nspr-devel|g' couchdb-pkg-master/js/rpm/SPECS/js.spec \
+  > ./js.spec
+
+rpmbuild -ba ./js.spec
+
+rm -rf couchdb-pkg-master ./js.spec
+
