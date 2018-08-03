@@ -1,0 +1,16 @@
+--- a/rel/overlay/bin/couchdb	2018-08-01 00:40:19.000000000 +0200
++++ b/rel/overlay/bin/couchdb	2018-08-03 07:35:43.253333124 +0200
+@@ -29,7 +29,10 @@
+ ARGS_FILE="${COUCHDB_ARGS_FILE:-$ROOTDIR/etc/vm.args}"
+ SYSCONFIG_FILE="${COUCHDB_SYSCONFIG_FILE:-$ROOTDIR/releases/$APP_VSN/sys.config}"
+ 
+-exec "$BINDIR/erlexec" -boot "$ROOTDIR/releases/$APP_VSN/couchdb" \
+-     -args_file "${ARGS_FILE}" \
+-     -config "${SYSCONFIG_FILE}" "$@"
++[ -z ${COUCHDB_VM_ARGS+x} ] && COUCHDB_VM_ARGS="${ARGS_FILE}"
++[ -z ${COUCHDB_INI_FILES+x} ] && COUCHDB_INI_FILES=
+ 
++exec "$BINDIR/erlexec" -boot "$ROOTDIR/releases/$APP_VSN/couchdb" \
++     -args_file "${COUCHDB_VM_ARGS}" \
++     -couch_ini $COUCHDB_INI_FILES \
++     -config "${SYSCONFIG_FILE}" "$@"     
