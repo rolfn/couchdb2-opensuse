@@ -7,7 +7,7 @@ The couchdb source code: http://www.apache.org/dist/couchdb/source/
 
 ```
 sudo zypper in erlang erlang-src erlang-rebar erlang-reltool erlang-epmd \
-  js-devel libicu-devel pkg-config rpmbuild
+  js-devel libicu-devel pkg-config autoconf213 mozilla-nspr-devel rpmbuild 
 sudo zypper in -t pattern devel_C_C++ 
 ```
 
@@ -15,6 +15,17 @@ sudo zypper in -t pattern devel_C_C++
 
 ```
 mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
+```
+
+#### couch-js
+
+```
+./build-couch-js
+```
+
+#### couchdb
+
+```
 cp couchdb.service *.patch apache-couchdb-2.x.y.tar.gz usr-bin-couchdb \
   ~/rpmbuild/SOURCES/
 rpmbuild -ba couchdb.spec.2.x.y 
@@ -31,7 +42,8 @@ Tested with »Tumbleweed«, »Leap 42.1«, »Leap 42.2«, and »Leap 42.3«.
    
 ### Install 
 ```
-sudo zypper install ~/rpmbuild/RPMS/x86_64/couchdb-2.x.y*.x86_64.rpm
+sudo zypper install ~/rpmbuild/RPMS/x86_64/couch-js-x.y.z*.x86_64.rpm \
+  ~/rpmbuild/RPMS/x86_64/couchdb-2.x.y*.x86_64.rpm
 ```
 
 ### Enable Service and Start
