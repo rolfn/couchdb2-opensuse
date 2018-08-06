@@ -49,6 +49,7 @@ sudo zypper install ~/rpmbuild/RPMS/x86_64/couch-js-x.y.z*.x86_64.rpm \
 ### Enable Service and Start
 ```
 sudo systemctl enable couchdb.service
+sudo systemctl daemon-reload
 sudo systemctl start couchdb.service
 ```
 
