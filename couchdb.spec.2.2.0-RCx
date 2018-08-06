@@ -34,7 +34,7 @@ BuildRequires: erlang-rebar
 BuildRequires: erlang-reltool
 
 BuildRequires: erlang-epmd
-BuildRequires: js-devel
+BuildRequires: couch-js
 BuildRequires: libicu-devel 
 BuildRequires: pkg-config
 
