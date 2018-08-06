@@ -17,7 +17,7 @@ sudo zypper in -t pattern devel_C_C++
 mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
 ```
 
-#### couch-js
+#### couch-js / couch-js-devel
 
 ```
 ./build-couch-js
