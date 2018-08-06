@@ -18,7 +18,7 @@
 
 Name:          couchdb
 Version:       2.2.0
-Release:       3
+Release:       5
 Summary:       A document database server, accessible via a RESTful JSON API
 Group:         Applications/Databases
 License:       Apache
@@ -34,7 +34,7 @@ BuildRequires: erlang-rebar
 BuildRequires: erlang-reltool
 
 BuildRequires: erlang-epmd
-BuildRequires: couch-js
+BuildRequires: couch-js-devel
 BuildRequires: libicu-devel 
 BuildRequires: pkg-config
 
@@ -119,6 +119,10 @@ getent passwd %{couchdb_user} >/dev/null || \
 %{_unitdir}/%{name}.service
 
 %changelog
+* Mon Aug 06 2018 Rolf Niepraschk <Rolf.Niepraschk@gmx.de>
+- Test with 2.2.0-RC3
+- Replace js-devel by couch-js-devel
+
 * Fri Aug 03 2018 Rolf Niepraschk <Rolf.Niepraschk@gmx.de>
 - Update to version 2.2.0-RC2
 - Replace package "libmozjs185" by the self created package "couch-js"

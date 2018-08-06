@@ -42,7 +42,9 @@ Tested with »Tumbleweed«, »Leap 42.1«, »Leap 42.2«, and »Leap 42.3«.
    
 ### Install 
 ```
-sudo zypper install ~/rpmbuild/RPMS/x86_64/couch-js-x.y.z*.x86_64.rpm \
+sudo zypper install ~/rpmbuild/RPMS/x86_64/couch-js-devel-1.8.5-21.x86_64.rpm
+# ^--- (only for rebuild the couchdb bin rpm)
+sudo zypper install ~/rpmbuild/RPMS/x86_64/couch-js-1.8.5-21.x86_64.rpm \
   ~/rpmbuild/RPMS/x86_64/couchdb-2.x.y*.x86_64.rpm
 ```
 
