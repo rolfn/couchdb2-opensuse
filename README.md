@@ -7,7 +7,8 @@ The couchdb source code: http://www.apache.org/dist/couchdb/source/
 
 ```
 sudo zypper in erlang erlang-src erlang-rebar erlang-reltool erlang-epmd \
-  js-devel libicu-devel pkg-config autoconf213 mozilla-nspr-devel rpmbuild 
+  js-devel libicu-devel pkg-config autoconf213 mozilla-nspr-devel rpmbuild \
+  libffi-devel
 sudo zypper in -t pattern devel_C_C++ 
 ```
 
