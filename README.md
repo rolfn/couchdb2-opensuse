@@ -39,12 +39,12 @@ For the results look at:
 ~/rpmbuild/SRPMS/
 ```
 
-Tested with »Tumbleweed«, »Leap 42.1«, »Leap 42.2«, and »Leap 42.3«.
+Tested with »Tumbleweed«, »Leap 15.0«, »Leap 42.3«, »Leap 42.2«, and »Leap 42.1«.
    
 ### Install 
 ```
 sudo zypper install ~/rpmbuild/RPMS/x86_64/couch-js-devel-1.8.5-21.x86_64.rpm
-# ^--- (only for rebuild the couchdb bin rpm)
+# (only for rebuild the couchdb bin rpm)
 sudo zypper install ~/rpmbuild/RPMS/x86_64/couch-js-1.8.5-21.x86_64.rpm \
   ~/rpmbuild/RPMS/x86_64/couchdb-2.x.y*.x86_64.rpm
 ```
@@ -56,5 +56,5 @@ sudo systemctl daemon-reload
 sudo systemctl start couchdb.service
 ```
 
-Edit `/etc/couchdb/local.ini` maybe necessary before starting the process.
+Edit `/etc/couchdb/local.ini` maybe necessary before starting the database.
  
