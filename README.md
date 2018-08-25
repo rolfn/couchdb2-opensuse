@@ -14,6 +14,8 @@ sudo zypper in -t pattern devel_C_C++
 
 ### Create rpm packages (src and bin)
 
+Do the following as a normal user (not as root).
+
 ```
 mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
 ```
