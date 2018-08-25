@@ -12,9 +12,9 @@ sudo zypper in erlang erlang-src erlang-rebar erlang-reltool erlang-epmd \
 sudo zypper in -t pattern devel_C_C++ 
 ```
 
-### Create rpm packages (src and bin)
+### Creation of rpm packages (src and bin)
 
-Do the following as a normal user (not as root).
+Do the following calls as a normal user (not as root).
 
 ```
 mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
