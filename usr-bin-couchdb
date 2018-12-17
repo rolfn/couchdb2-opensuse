@@ -1,12 +1,12 @@
 #!/bin/bash
 
-_term() {
+clean_exit() {
   kill -TERM $child 2>/dev/null
 }
 
-trap _term SIGTERM
+trap clean_exit EXIT
 
-/opt/couchdb/bin/couchdb &
+/opt/couchdb/bin/couchdb "$@" &
 child=$!
 
 wait $child
