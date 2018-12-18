@@ -1,5 +1,6 @@
 #!/bin/bash
-# Rolf Niepraschk <Rolf.Niepraschk@gmx.de>, 2018-08-03
+#
+# Rolf Niepraschk <Rolf.Niepraschk@gmx.de>, 2018-12-18
 #
 # Creates openSUSE src and bin rpm files for "couch-js" as a replacement for 
 # "libmozjs" (spidermonkey)
@@ -10,11 +11,10 @@ curl -sL https://github.com/apache/couchdb-pkg/archive/master.tar.gz | tar xz
 cp couchdb-pkg-master/js/src/js185-?.?.?.tar.gz  \
    couchdb-pkg-master/js/rpm/SOURCES/* ~/rpmbuild/SOURCES/
 
-# openSUSE has "mozilla-nspr-devel" instead of "nspr-devel"
-sed 's|nspr-devel|mozilla-nspr-devel|g' couchdb-pkg-master/js/rpm/SPECS/js.spec \
-  > ./js.spec
+rpmbuild -ba couchdb-pkg-master/js/rpm/SPECS/js.spec
 
-rpmbuild -ba ./js.spec
+rm -rf couchdb-pkg-master
 
-rm -rf couchdb-pkg-master ./js.spec
+exit
+
 

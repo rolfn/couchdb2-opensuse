@@ -6,7 +6,7 @@
 
 %define couchdb_user couchdb
 %define couchdb_group couchdb
-#%define couchdb_home %{_localstatedir}/lib/%{name}
+%define couchdb_home %{_localstatedir}/lib/%{name}
 
 Name:          couchdb
 Version:       2.3.0
@@ -59,7 +59,7 @@ JavaScript acting as the default view definition language.
 make release %{?_smp_mflags}
 
 # Store databases in /var/lib/couchdb
-sed -i 's|\./data\b|%{_sharedstatedir}/%{name}|g' rel/couchdb/etc/default.ini
+sed -i 's|\./data\b|%{couchdb_home}/%{name}|g' rel/couchdb/etc/default.ini
 
 %install
 mkdir -p %{buildroot}/opt
@@ -73,7 +73,7 @@ mv %{buildroot}/opt/couchdb/etc %{buildroot}%{_sysconfdir}/%{name}
 
 install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 
-mkdir -p %{buildroot}%{_sharedstatedir}/%{name}
+mkdir -p %{buildroot}%{couchdb_home}/%{name}
 
 rmdir %{buildroot}/opt/couchdb/var/log %{buildroot}/opt/couchdb/var
 
@@ -83,7 +83,7 @@ rmdir %{buildroot}/opt/couchdb/var/log %{buildroot}/opt/couchdb/var
 %pre
 getent group %{couchdb_group} >/dev/null || groupadd -r %{couchdb_group}
 getent passwd %{couchdb_user} >/dev/null || \
-  useradd -r -g %{couchdb_group} -d %{_sharedstatedir}/%{name} \
+  useradd -r -g %{couchdb_group} -d %{couchdb_home}/%{name} \
   -s /sbin/nologin %{couchdb_user}
 
 %post
@@ -108,7 +108,7 @@ getent passwd %{couchdb_user} >/dev/null || \
 %config(noreplace) %attr(0644, %{name}, %{name}) %{_sysconfdir}/%{name}/local.ini
 %config(noreplace) %attr(0644, %{name}, %{name}) %{_sysconfdir}/%{name}/vm.args
 
-%dir %attr(0755, %{couchdb_user}, %{couchdb_group}) %{_sharedstatedir}/%{name} 
+%dir %attr(0755, %{couchdb_user}, %{couchdb_group}) %{couchdb_home}/%{name} 
 
 %{_unitdir}/%{name}.service
 

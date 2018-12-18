@@ -6,10 +6,10 @@ The couchdb source code: http://www.apache.org/dist/couchdb/source/
 ### Required packages for the build process
 
 ```
-sudo zypper in erlang erlang-src erlang-rebar erlang-reltool erlang-epmd \
-  js-devel libicu-devel pkg-config autoconf213 mozilla-nspr-devel rpmbuild \
+sudo zypper install erlang erlang-rebar erlang-reltool erlang-epmd \
+  libicu-devel pkg-config autoconf213 mozilla-nspr-devel rpmbuild \
   libffi-devel
-sudo zypper in -t pattern devel_C_C++ 
+sudo zypper install -t pattern devel_C_C++
 ```
 
 ### Creation of rpm packages (src and bin)
@@ -29,10 +29,11 @@ mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
 #### couchdb
 
 ```
-cp couchdb.service *.patch apache-couchdb-2.x.y.tar.gz usr-bin-couchdb \
-  ~/rpmbuild/SOURCES/
-rpmbuild -ba couchdb.spec.2.x.y 
+sudo zypper install ~/rpmbuild/RPMS/x86_64/couch-js-devel-1.8.5-21.x86_64.rpm
+
+./build-couchdb 2.3.0 # adapt the version
 ```
+
 
 For the results look at:
 
@@ -41,14 +42,13 @@ For the results look at:
 ~/rpmbuild/SRPMS/
 ```
 
-Tested with »Tumbleweed«, »Leap 15.0«, »Leap 42.3«, »Leap 42.2«, and »Leap 42.1«.
+Tested with »Tumbleweed«, »Leap 15.0«, and »Leap 42.3«.
    
 ### Install 
 ```
-sudo zypper install ~/rpmbuild/RPMS/x86_64/couch-js-devel-1.8.5-21.x86_64.rpm
-# (only for rebuild the couchdb bin rpm)
+sudo zypper rm libmozjs185-1_0 # if installed
 sudo zypper install ~/rpmbuild/RPMS/x86_64/couch-js-1.8.5-21.x86_64.rpm \
-  ~/rpmbuild/RPMS/x86_64/couchdb-2.x.y*.x86_64.rpm
+  ~/rpmbuild/RPMS/x86_64/couchdb-2.3.0-1.x86_64.rpm # adapt the version
 ```
 
 ### Enable Service and Start
@@ -56,6 +56,7 @@ sudo zypper install ~/rpmbuild/RPMS/x86_64/couch-js-1.8.5-21.x86_64.rpm \
 sudo systemctl enable couchdb.service
 sudo systemctl daemon-reload
 sudo systemctl start couchdb.service
+sudo systemctl status couchdb.service
 ```
 
 Edit `/etc/couchdb/local.ini` maybe necessary before starting the database.

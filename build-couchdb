@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# Rolf Niepraschk <Rolf.Niepraschk@gmx.de>, 2018-12-18
+#
+# Creates openSUSE src and bin rpm files for "couchdb"
+
+v=${1:-'2.3.0'}
+
+echo "Build src and bin rpm files for \"CouchDB version ${v}\""
+
+curl "http://apache.mirrors.ovh.net/ftp.apache.org/dist/couchdb/source/${v}/apache-couchdb-${v}.tar.gz" \
+ -o ~/rpmbuild/SOURCES/apache-couchdb-${v}.tar.gz 
+
+cp -p couchdb.service *.patch ~/rpmbuild/SOURCES/
+
+rpmbuild -ba couchdb.spec
+
+exit
+
+
