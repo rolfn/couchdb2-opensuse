@@ -11,7 +11,7 @@ echo "Build src and bin rpm files for \"CouchDB version ${v}\""
 curl "http://apache.mirrors.ovh.net/ftp.apache.org/dist/couchdb/source/${v}/apache-couchdb-${v}.tar.gz" \
  -o ~/rpmbuild/SOURCES/apache-couchdb-${v}.tar.gz 
 
-cp -p couchdb.service *.patch ~/rpmbuild/SOURCES/
+cp -p couchdb.service *.patch usr-bin-couchdb ~/rpmbuild/SOURCES/
 
 rpmbuild -ba couchdb.spec
 
