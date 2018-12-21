@@ -6,7 +6,8 @@
 
 %define couchdb_user couchdb
 %define couchdb_group couchdb
-%define couchdb_home %{_localstatedir}/lib/%{name}
+%define couchdb_data %{_localstatedir}/lib/%{name}
+%define couchdb_home %{couchdb_data}
 
 Name:          couchdb
 Version:       2.3.0
@@ -21,7 +22,6 @@ Source2:       usr-bin-couchdb
 Patch1:        0002-Read-config-from-env-COUCHDB_VM_ARGS-and-COUCHDB_INI.patch
 
 BuildRequires: erlang
-#BuildRequires: erlang-src
 BuildRequires: erlang-rebar
 BuildRequires: erlang-reltool
 BuildRequires: erlang-epmd
@@ -59,7 +59,7 @@ JavaScript acting as the default view definition language.
 make release %{?_smp_mflags}
 
 # Store databases in /var/lib/couchdb
-sed -i 's|\./data\b|%{couchdb_home}/%{name}|g' rel/couchdb/etc/default.ini
+sed -i 's|\./data\b|%{couchdb_data}/%{name}|g' rel/couchdb/etc/default.ini
 
 %install
 mkdir -p %{buildroot}/opt
@@ -73,7 +73,7 @@ mv %{buildroot}/opt/couchdb/etc %{buildroot}%{_sysconfdir}/%{name}
 
 install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 
-mkdir -p %{buildroot}%{couchdb_home}/%{name}
+mkdir -p %{buildroot}%{couchdb_data}/%{name}
 
 rmdir %{buildroot}/opt/couchdb/var/log %{buildroot}/opt/couchdb/var
 
@@ -108,7 +108,7 @@ getent passwd %{couchdb_user} >/dev/null || \
 %config(noreplace) %attr(0644, %{name}, %{name}) %{_sysconfdir}/%{name}/local.ini
 %config(noreplace) %attr(0644, %{name}, %{name}) %{_sysconfdir}/%{name}/vm.args
 
-%dir %attr(0755, %{couchdb_user}, %{couchdb_group}) %{couchdb_home}/%{name} 
+%dir %attr(0755, %{couchdb_user}, %{couchdb_group}) %{couchdb_data}/%{name} 
 
 %{_unitdir}/%{name}.service
 
