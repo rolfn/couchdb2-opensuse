@@ -1,5 +1,5 @@
 # Copyright 2016 Adrien Vergé
-# adapted for openSUSE: Rolf Niepraschk <Rolf.Niepraschk@gmx.de>, 2018
+# adapted for openSUSE: Rolf Niepraschk <Rolf.Niepraschk@gmx.de>, 2019
 #
 # see: https://github.com/adrienverge/copr-couchdb
 #
@@ -10,7 +10,7 @@
 %define couchdb_home %{couchdb_data}
 
 Name:          couchdb
-Version:       2.3.0
+Version:       2.3.1
 Release:       1
 Summary:       A document database server, accessible via a RESTful JSON API
 Group:         Applications/Databases
