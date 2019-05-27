@@ -11,7 +11,7 @@
 
 Name:          couchdb
 Version:       2.3.1
-Release:       1
+Release:       2
 Summary:       A document database server, accessible via a RESTful JSON API
 Group:         Applications/Databases
 License:       Apache
@@ -83,7 +83,7 @@ rmdir %{buildroot}/opt/couchdb/var/log %{buildroot}/opt/couchdb/var
 %pre
 getent group %{couchdb_group} >/dev/null || groupadd -r %{couchdb_group}
 getent passwd %{couchdb_user} >/dev/null || \
-  useradd -r -g %{couchdb_group} -d %{couchdb_home}/%{name} \
+  useradd -r -g %{couchdb_group} -d %{couchdb_home} \
   -s /sbin/nologin %{couchdb_user}
 
 %post
