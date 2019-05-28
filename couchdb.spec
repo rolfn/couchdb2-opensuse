@@ -7,7 +7,7 @@
 %define couchdb_user couchdb
 %define couchdb_group couchdb
 %define couchdb_data %{_localstatedir}/lib/%{name}
-%define couchdb_home %{couchdb_data}
+%define couchdb_home /opt/%{name}
 
 Name:          couchdb
 Version:       2.3.1
