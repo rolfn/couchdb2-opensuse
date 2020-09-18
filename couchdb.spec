@@ -73,7 +73,7 @@ mv %{buildroot}/opt/couchdb/etc %{buildroot}%{_sysconfdir}/%{name}
 
 install -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 
-mkdir -p %{buildroot}%{couchdb_data}/%{name}
+mkdir -p %{buildroot}%{couchdb_data}
 
 rmdir %{buildroot}/opt/couchdb/var/log %{buildroot}/opt/couchdb/var
 
@@ -108,7 +108,7 @@ getent passwd %{couchdb_user} >/dev/null || \
 %config(noreplace) %attr(0644, %{name}, %{name}) %{_sysconfdir}/%{name}/local.ini
 %config(noreplace) %attr(0644, %{name}, %{name}) %{_sysconfdir}/%{name}/vm.args
 
-%dir %attr(0755, %{couchdb_user}, %{couchdb_group}) %{couchdb_data}/%{name} 
+%dir %attr(0755, %{couchdb_user}, %{couchdb_group}) %{couchdb_data} 
 
 %{_unitdir}/%{name}.service
 
