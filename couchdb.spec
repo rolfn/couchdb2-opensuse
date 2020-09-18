@@ -11,7 +11,7 @@
 
 Name:          couchdb
 Version:       2.3.1
-Release:       2
+Release:       3
 Summary:       A document database server, accessible via a RESTful JSON API
 Group:         Applications/Databases
 License:       Apache
@@ -59,7 +59,7 @@ JavaScript acting as the default view definition language.
 make release %{?_smp_mflags}
 
 # Store databases in /var/lib/couchdb
-sed -i 's|\./data\b|%{couchdb_data}/%{name}|g' rel/couchdb/etc/default.ini
+sed -i 's|\./data\b|%{couchdb_data}|g' rel/couchdb/etc/default.ini
 
 %install
 mkdir -p %{buildroot}/opt
